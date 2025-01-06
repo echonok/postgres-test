@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "build": "tsc",
+    "dev": "cross-env NODE_ENV=development ts-node-dev --respawn src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -17,7 +20,18 @@
   "homepage": "https://github.com/echonok/postgres-test#readme",
   "description": "",
   "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.5",
+    "@types/pg": "^8.11.10",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.2"
   }
 }

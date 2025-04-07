@@ -4,7 +4,10 @@ import { User } from '../entities/User.entity';
 export class UserService {
   private userRepository = AppDataSource.getRepository(User);
 
-  async getAllUsers() {
+  async getAllUsers(withDeleted = false) {
+    if (withDeleted) {
+      return this.userRepository.find({ withDeleted: true });
+    }
     return this.userRepository.find();
   }
 
@@ -23,7 +26,7 @@ export class UserService {
   }
 
   async deleteUser(id: number) {
-    await this.userRepository.delete(id);
+    await this.userRepository.softDelete(id);
     return { message: 'User deleted successfully' };
   }
 }
